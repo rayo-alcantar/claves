@@ -21,12 +21,22 @@ from time import sleep
 from pygame import mixer
 mixer.init()
 
-#Sounds:
-ADD= mixer.Sound('sounds/add.ogg')
-RECYCLE= mixer.Sound('sounds/recycle.ogg')
-EXIT= mixer.Sound('sounds/exit.ogg')
+def resource_path(relative_path):
+	"""Obtiene la ruta absoluta para recursos, compatible con PyInstaller."""
+	try:
+		# Cuando se ejecuta como un ejecutable generado por PyInstaller
+		base_path = sys._MEIPASS
+	except AttributeError:
+		# Cuando se ejecuta directamente como script
+		base_path = os.path.abspath(".")
+	return os.path.join(base_path, relative_path)
+
+# Corrige las rutas a los sonidos
+ADD = mixer.Sound(resource_path('sounds/add.ogg'))
+RECYCLE = mixer.Sound(resource_path('sounds/recycle.ogg'))
+EXIT = mixer.Sound(resource_path('sounds/exit.ogg'))
 EXIT.set_volume(0.7)
-OK= mixer.Sound('sounds/ok.ogg')
+OK = mixer.Sound(resource_path('sounds/ok.ogg'))
 
 crypto= None
 
