@@ -1,1 +1,6 @@
-﻿m/
+﻿lib/database
+dist/
+build/
+.venv/
+
+database
